@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
 
 NUMBER=$1
+
+if ! [[ ${NUMBER} =~ ^-?[0-9]+$ ]]
+then
+    echo "[ERROR] Not a number"
+    exit 0
+fi
+
 DIR_NUMERALS=0
 
 for COUNT in {6..1}
