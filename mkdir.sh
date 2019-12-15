@@ -2,7 +2,7 @@
 
 NUMBER=$1
 
-if ! [[ ${NUMBER} =~ ^-?[0-9]+$ ]]
+if ! [[ ${NUMBER} =~ ^[0-9]+$ ]]
 then
     echo "[ERROR] Not a number"
     exit 0
