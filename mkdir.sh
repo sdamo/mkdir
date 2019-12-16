@@ -8,9 +8,15 @@ then
     exit 0
 fi
 
+if [[ ${NUMBER} -lt 100 || ${NUMBER} -gt 9223372036854775807 ]]
+then
+    echo "[ERROR] range 100-9223372036854775807"
+    exit 0
+fi
+
 DIR_NUMERALS=0
 
-for COUNT in {6..1}
+for COUNT in $(seq $(( ${#NUMBER} - 2 )) -1 1)
 do
 
     NUMERAL=$(( 10 ** (${COUNT} + 1) ))
@@ -19,9 +25,9 @@ do
     DIR_NUMERAL=$(( ${NUMERALS[${COUNT}]} * (10 ** (${COUNT} + 1)) ))
     DIR_NUMERALS=$(( ${DIR_NUMERAL} + ${DIR_NUMERALS} ))
 
-    DIR_NAME_PATTERN=`printf "%07d" ${DIR_NUMERALS}`
-    DIR_NAME=${DIR_NAME}${DIR_NAME_PATTERN}"/"
+    DIR=`printf "%0${#NUMBER}d" ${DIR_NUMERALS}`
+    DIRS=${DIRS}${DIR}"/"
 
 done
 
-mkdir -p ${DIR_NAME}
+mkdir -p ${DIRS}
