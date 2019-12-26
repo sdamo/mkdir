@@ -31,3 +31,5 @@ do
 done
 
 mkdir -p ${DIRS}
+
+echo ${DIRS}
